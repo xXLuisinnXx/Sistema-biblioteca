@@ -1,7 +1,11 @@
 package com.sistema_biblioteca.app.presentation.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +30,15 @@ public class EmprestimoController {
         Emprestimo emprestimo = emprestimoService.realizarEmprestimo(request.usuarioId(), request.livroId(), request.dataPrevistaDevolucao());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(emprestimo);
+    }
+
+    @GetMapping("/atrasados")
+    public ResponseEntity<List<Emprestimo>> listarAtrasados(){
+        return ResponseEntity.ok(emprestimoService.listarAtrasados());
+    }
+
+    @GetMapping("/usuario/{usuarioId}/historico")
+    public ResponseEntity<List<Emprestimo>> HistoricoUsuario(@PathVariable Long usuarioId){
+        return ResponseEntity.ok(emprestimoService.HistoricoUsuario(usuarioId));
     }
 }

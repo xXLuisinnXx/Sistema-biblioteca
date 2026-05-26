@@ -1,6 +1,7 @@
 package com.sistema_biblioteca.app.service.usecase;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,5 +46,13 @@ public class EmprestimoService {
         Emprestimo emprestimo = emprestimoRepository.findById(emprestimoId).orElseThrow(() -> new RuntimeException("Empréstimo não encontrado"));
         emprestimo.devolver();
         return emprestimoRepository.save(emprestimo);
+    }
+
+    public List<Emprestimo> listarAtrasados(){
+        return emprestimoRepository.findByStatus("ATRASADO");
+    }
+
+    public List<Emprestimo> HistoricoUsuario(Long usuarioId){
+        return emprestimoRepository.findByUsuarioId(usuarioId);
     }
 }
