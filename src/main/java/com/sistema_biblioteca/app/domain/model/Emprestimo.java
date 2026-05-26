@@ -43,10 +43,11 @@ public class Emprestimo {
         this.multa = BigDecimal.ZERO;
     }
     //Regras de de negócio encapsuladas na entidade
-    public void devolver(LocalDate dataDevolucao){
+    public void devolver(){
         if(!"ATIVO".equals(this.status) && !"ATRASADO".equals(this.status)){
             throw new RuntimeException("Empréstimo já foi devolvido ou não está ativo.");
-        }this.dataDevolucao = LocalDate.now();
+        }
+        this.dataDevolucao = LocalDate.now();
         this.status = "DEVOLVIDO";
         this.multa = calcularMulta();
 
