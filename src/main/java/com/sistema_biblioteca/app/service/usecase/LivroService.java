@@ -19,7 +19,7 @@ public class LivroService {
         return livroRepository.save(livro);
     }
 
-    public List<Livro> listarLivros(){
+    public List<Livro> listarTodos(){
         return livroRepository.findAll();
     }
 }
