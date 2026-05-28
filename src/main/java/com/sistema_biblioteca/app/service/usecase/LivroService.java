@@ -1,9 +1,10 @@
 package com.sistema_biblioteca.app.service.usecase;
 
-import java.util.List;
-
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import com.sistema_biblioteca.app.domain.model.Livro;
 import com.sistema_biblioteca.app.domain.repository.LivroRepository;
 
@@ -15,11 +16,14 @@ public class LivroService {
         this.livroRepository = livroRepository;
     }
 
+    @CacheEvict(value = "livros", allEntries = true)
     public Livro cadastrarLivro(Livro livro){
         return livroRepository.save(livro);
     }
 
-    public List<Livro> listarTodos(){
-        return livroRepository.findAll();
+    @Cacheable(value = "livros")
+    public Page<Livro> buscarLivros(String busca, Pageable pageable) {
+        return livroRepository.buscaComFiltro(busca, pageable);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.sistema_biblioteca.app.service.usecase;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import com.sistema_biblioteca.app.domain.model.Usuario;
 import com.sistema_biblioteca.app.domain.repository.EmprestimoRepository;
 import com.sistema_biblioteca.app.domain.repository.LivroRepository;
 import com.sistema_biblioteca.app.domain.repository.UsuarioRepository;
+import com.sistema_biblioteca.app.service.dto.ItemFinanceiroDTO;
+import com.sistema_biblioteca.app.service.dto.RelatorioFinanceiroDTO;
 
 @Service
 public class EmprestimoService {
@@ -54,5 +57,20 @@ public class EmprestimoService {
 
     public List<Emprestimo> HistoricoUsuario(Long usuarioId){
         return emprestimoRepository.findByUsuarioId(usuarioId);
+    }
+
+    public RelatorioFinanceiroDTO gerarRelatorioFinanceiro(LocalDate dataInicio, LocalDate dataFim){
+        List<Emprestimo> emprestimos = emprestimoRepository.buscarParaRelatorioFinanceiro(dataInicio, dataFim);
+
+        BigDecimal totalFaturado = emprestimos.stream().map(Emprestimo::getMulta)
+        .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        List<ItemFinanceiroDTO> itens = emprestimos.stream()
+            .map(e-> new ItemFinanceiroDTO(
+                e.getLivro().getTitulo(),
+                e.getUsuario().getNome(),
+                e.getMulta()
+            )).toList();
+        return new RelatorioFinanceiroDTO(totalFaturado, itens);
     }
 }
