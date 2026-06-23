@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Relatório financeiro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+
+        <!-- Cabeçalho com filtro de período -->
+        <div class="page-header page-header-row" style="align-items:flex-start; flex-wrap:wrap; gap:1rem">
+          <div>
+            <div class="page-title">Relatório financeiro</div>
+            <div class="page-desc">Resumo de arrecadação por multas no período</div>
+          </div>
+          <div class="period-row">
+            <div class="field" style="margin:0">
+              <input id="rel-inicio" type="date" style="font-size:13px;padding:7px 10px"
+                     onchange="carregarRelatorio()" />
+            </div>
+            <span style="color:var(--muted);font-size:13px">até</span>
+            <div class="field" style="margin:0">
+              <input id="rel-fim" type="date" style="font-size:13px;padding:7px 10px"
+                     onchange="carregarRelatorio()" />
+            </div>
+            <button class="btn" onclick="carregarRelatorio()" style="font-size:13px;padding:7px 14px">
+              <i class="ti ti-refresh"></i> Filtrar
+            </button>
+          </div>
+        </div>
+
+        <!-- Cards de estatísticas -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Total faturado</div>
+            <div id="rel-total" class="rev-number">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Multas no período</div>
+            <div id="rel-qtd" class="rev-number">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Valor médio / multa</div>
+            <div id="rel-media" class="rev-number">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Maior multa</div>
+            <div id="rel-maior" class="rev-number">—</div>
+          </div>
+        </div>
+
+        <!-- Tabela de multas -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-receipt"></i> Multas registradas</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Livro</th>
+                  <th>Dias atraso</th>
+                  <th>Valor</th>
+                  <th>Data devolução</th>
+                </tr>
+              </thead>
+              <tbody id="rel-tbody">
+                <tr>
+                  <td colspan="5" class="table-empty">
+                    Selecione um período para carregar o relatório
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/relatorio.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Cadastrar livro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header">
+          <div class="page-title">Cadastrar livro</div>
+          <div class="page-desc">Adicione um novo título ao acervo da biblioteca</div>
+        </div>
+
+        <!-- Informações básicas -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-info-circle"></i> Informações básicas</div>
+          <div class="grid-2" style="gap:14px">
+            <div class="field col-span-2">
+              <label>Título *</label>
+              <input id="livro-titulo" type="text" placeholder="Ex.: Design Patterns" />
+            </div>
+            <div class="field">
+              <label>Autor(es) *</label>
+              <input id="livro-autor" type="text" placeholder="Ex.: Erich Gamma, Richard Helm" />
+            </div>
+            <div class="field">
+              <label>ISBN</label>
+              <input id="livro-isbn" type="text" placeholder="978-0-000-00000-0" />
+              <span class="hint-text">Formato: 978-0-000-00000-0</span>
+            </div>
+            <div class="field">
+              <label>Editora</label>
+              <input id="livro-editora" type="text" placeholder="Ex.: Addison-Wesley" />
+            </div>
+            <div class="field">
+              <label>Ano de publicação</label>
+              <input id="livro-ano" type="number" placeholder="Ex.: 1994" min="1000" max="2099" />
+            </div>
+            <div class="field">
+              <label>Categoria</label>
+              <select id="livro-categoria">
+                <option value="">Selecionar</option>
+                <option>Engenharia de Software</option>
+                <option>Ciência da Computação</option>
+                <option>Banco de Dados</option>
+                <option>Redes</option>
+                <option>Literatura</option>
+                <option>Periódicos</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Idioma</label>
+              <select id="livro-idioma">
+                <option value="">Selecionar</option>
+                <option>Inglês</option>
+                <option>Português</option>
+                <option>Espanhol</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Edição</label>
+              <input id="livro-edicao" type="text" placeholder="Ex.: 3ª edição" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Estoque -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-stack"></i> Estoque e localização</div>
+          <div class="grid-3" style="gap:14px">
+            <div class="field">
+              <label>Quantidade total *</label>
+              <input id="livro-qtd-total" type="number" placeholder="Ex.: 5" min="0" />
+            </div>
+            <div class="field">
+              <label>Qtd. disponível *</label>
+              <input id="livro-qtd-disp" type="number" placeholder="Ex.: 5" min="0" />
+            </div>
+            <div class="field">
+              <label>Localização na estante</label>
+              <input id="livro-localizacao" type="text" placeholder="ES-042-B" />
+              <span class="hint-text">Seção-Número-Prateleira</span>
+            </div>
+          </div>
+
+          <div class="section-sep"></div>
+
+          <div class="card-title" style="margin-bottom:0.75rem">
+            <i class="ti ti-file-description"></i> Sinopse
+          </div>
+          <div class="field">
+            <textarea id="livro-sinopse" placeholder="Resumo breve do livro..."></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="limparForm()">
+            <i class="ti ti-x"></i> Limpar
+          </button>
+          <button id="btn-cadastrar" class="btn btn-primary" onclick="cadastrarLivro()">
+            <i class="ti ti-circle-plus"></i> Cadastrar livro
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/livros.js"></script>
+</body>
+</html>

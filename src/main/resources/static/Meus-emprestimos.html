@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Meus empréstimos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header page-header-row">
+          <div>
+            <div class="page-title" id="page-title">Meus empréstimos</div>
+            <div class="page-desc" id="page-desc">Histórico de empréstimos finalizados e em andamento</div>
+          </div>
+          <div style="display:flex; gap:10px">
+            <a id="link-voltar" href="/usuarios.html" class="btn" style="display:none">
+              <i class="ti ti-arrow-left"></i> Voltar para usuários
+            </a>
+            <button class="btn" onclick="recarregar()">
+              <i class="ti ti-refresh"></i> Atualizar
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Total de empréstimos</div>
+            <div class="stat-value" id="stat-total">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Em andamento</div>
+            <div class="stat-value" id="stat-ativos">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Atrasados</div>
+            <div class="stat-value" id="stat-atrasados">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total em multas</div>
+            <div class="stat-value" id="stat-multas">—</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Livro</th>
+                  <th>Empréstimo</th>
+                  <th>Previsão devolução</th>
+                  <th>Devolução</th>
+                  <th>Status</th>
+                  <th>Multa</th>
+                  <th id="th-acao" style="display:none">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="emp-tbody">
+                <tr>
+                  <td colspan="7" class="table-empty">
+                    <i class="ti ti-loader spin"></i> Carregando...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/meus-emprestimos.js"></script>
+</body>
+</html>

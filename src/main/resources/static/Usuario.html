@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Novo usuário</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header">
+          <div class="page-title">Cadastrar novo usuário</div>
+          <div class="page-desc">Registro de leitor para acesso ao acervo</div>
+        </div>
+
+        <!-- Dados pessoais -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-user"></i> Dados pessoais</div>
+          <div class="grid-2" style="gap:14px">
+            <div class="field">
+              <label>Nome completo *</label>
+              <input id="usr-nome" type="text" placeholder="Ex.: Maria Oliveira Santos" />
+            </div>
+            <div class="field">
+              <label>CPF</label>
+              <input type="text" placeholder="000.000.000-00" />
+              <span class="hint-text">Apenas para controle interno — não enviado ao sistema</span>
+            </div>
+            <div class="field">
+              <label>Data de nascimento</label>
+              <input type="date" />
+              <span class="hint-text">Apenas para controle interno — não enviado ao sistema</span>
+            </div>
+            <div class="field">
+              <label>Gênero</label>
+              <select>
+                <option value="">Selecionar</option>
+                <option>Feminino</option>
+                <option>Masculino</option>
+                <option>Prefiro não informar</option>
+              </select>
+              <span class="hint-text">Apenas para controle interno — não enviado ao sistema</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contato e acesso -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-mail"></i> Contato e credenciais de acesso</div>
+          <div class="grid-2" style="gap:14px">
+            <div class="field">
+              <label>E-mail *</label>
+              <input id="usr-email" type="email" placeholder="usuario@email.com" />
+            </div>
+            <div class="field">
+              <label>Telefone</label>
+              <input id="usr-telefone" type="tel" placeholder="(19) 00000-0000" />
+            </div>
+            <div class="field">
+              <label>Senha inicial *</label>
+              <input id="usr-senha" type="password" placeholder="Mínimo 6 caracteres" />
+              <span class="hint-text">O usuário deverá alterar no primeiro acesso</span>
+            </div>
+          </div>
+
+          <!--
+            DIVERGÊNCIA: O modelo Usuario no backend não possui campos como
+            CPF, data de nascimento, gênero, curso ou endereço.
+            Apenas nome, email, telefone, senha e perfil são persistidos.
+            Os demais campos são exibidos para UX mas não enviados.
+          -->
+          <div class="alert-strip alert-info" style="margin-top:12px">
+            <i class="ti ti-info-circle" style="font-size:15px;flex-shrink:0;margin-top:1px"></i>
+            <span>CPF, data de nascimento e gênero são coletados apenas localmente. O sistema
+                  armazena nome, e-mail, telefone e senha.</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="limparForm()"><i class="ti ti-x"></i> Cancelar</button>
+          <button id="btn-cadastrar" class="btn btn-primary" onclick="cadastrarUsuario()">
+            <i class="ti ti-user-plus"></i> Cadastrar usuário
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/usuario.js"></script>
+</body>
+</html>

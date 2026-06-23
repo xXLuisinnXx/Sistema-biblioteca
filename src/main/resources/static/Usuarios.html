@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Usuários</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header page-header-row">
+          <div>
+            <div class="page-title">Usuários cadastrados</div>
+            <div class="page-desc">Lista de todos os usuários do sistema</div>
+          </div>
+          <button class="btn" onclick="carregarUsuarios()">
+            <i class="ti ti-refresh"></i> Atualizar
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Perfil</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody id="usuarios-tbody">
+                <tr>
+                  <td colspan="4" class="table-empty">
+                    <i class="ti ti-loader spin"></i> Carregando...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/usuarios.js"></script>
+</body>
+</html>

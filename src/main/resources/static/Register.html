@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Criar conta</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+  <div id="toast"></div>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-icon"><i class="ti ti-books"></i></div>
+        <div>
+          <div class="brand-name">Biblioteca</div>
+          <div class="brand-sub">Sistema de Gestão</div>
+        </div>
+      </div>
+
+      <h1 class="login-title">Criar conta</h1>
+      <p class="login-desc">Preencha os dados para se cadastrar</p>
+
+      <div class="field" style="margin-bottom: 12px">
+        <label>Nome completo *</label>
+        <input id="reg-nome" type="text" placeholder="Seu nome completo" />
+      </div>
+
+      <div class="field" style="margin-bottom: 12px">
+        <label>E-mail *</label>
+        <input id="reg-email" type="email" placeholder="seu@email.com" autocomplete="email" />
+      </div>
+
+      <div class="field" style="margin-bottom: 12px">
+        <label>Telefone</label>
+        <input id="reg-telefone" type="tel" placeholder="(00) 00000-0000" />
+      </div>
+
+      <div class="field" style="margin-bottom: 12px">
+        <label>Senha *</label>
+        <input id="reg-senha" type="password" placeholder="Mínimo 6 caracteres" />
+      </div>
+
+      <div class="field">
+        <label>Confirmar senha *</label>
+        <input id="reg-confirmar" type="password" placeholder="Repita a senha" />
+      </div>
+
+      <p id="reg-error" class="login-error"></p>
+
+      <button id="btn-register" class="btn btn-primary" onclick="doRegister()"
+              style="width:100%; justify-content:center; margin-top:1.25rem">
+        <i class="ti ti-user-plus"></i> Criar conta
+      </button>
+
+      <p class="auth-link" style="margin-top:1rem">
+        Já tem uma conta? <a href="/index.html">Fazer login</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/register.js"></script>
+</body>
+</html>

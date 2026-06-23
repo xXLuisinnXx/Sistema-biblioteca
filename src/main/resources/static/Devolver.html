@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Devolver livro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header">
+          <div class="page-title">Devolver livro</div>
+          <div class="page-desc">Registre a devolução e calcule multas automaticamente</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="ti ti-hash"></i> Identificação do empréstimo</div>
+          <div class="grid-2" style="gap:14px; align-items:flex-end">
+            <div class="field">
+              <label>ID do empréstimo *</label>
+              <input id="dev-id" type="number" placeholder="Ex.: 42" min="1" />
+              <span class="hint-text">Informe o número do empréstimo a ser devolvido</span>
+            </div>
+            <div>
+              <button id="btn-devolver" class="btn btn-primary" onclick="registrarDevolucao()">
+                <i class="ti ti-arrow-back-up"></i> Registrar devolução
+              </button>
+            </div>
+          </div>
+
+          <!-- Resultado da devolução -->
+          <div id="dev-resultado"></div>
+        </div>
+
+        <!-- Info sobre multas -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-info-circle"></i> Regras de multa</div>
+          <p style="font-size:13.5px; color:var(--muted); line-height:1.7">
+            A multa é calculada automaticamente ao registrar a devolução.<br>
+            <strong>Taxa:</strong> R$ 2,50 por dia de atraso.<br>
+            <strong>Fórmula:</strong> dias de atraso × R$ 2,50.<br>
+            Devoluções no prazo ou antecipadas não geram multa.
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/devolver.js"></script>
+</body>
+</html>

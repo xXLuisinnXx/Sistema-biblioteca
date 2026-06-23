@@ -22,6 +22,17 @@ public class Livro {
     private String autor;
 
     private String isbn;
+
+    private String editora;
+    private Integer anoPublicacao;
+    private String categoria;
+    private String idioma;
+    private String edicao;
+    private String localizacao;
+
+    @Column(columnDefinition = "TEXT")
+    private String sinopse;
+    
     private Integer quantidadeTotal;
     private Integer quantidadeDisponivel;
 

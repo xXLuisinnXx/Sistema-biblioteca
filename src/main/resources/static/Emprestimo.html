@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Solicitar empréstimo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header">
+          <div class="page-title">Solicitar empréstimo</div>
+          <div class="page-desc">Registre um novo empréstimo de livro</div>
+        </div>
+
+        <!-- Usuário -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-user-search"></i> Usuário</div>
+
+          <!-- Visível apenas para BIBLIOTECARIO/ASSISTENTE: busca de qualquer usuário -->
+          <div id="usuario-busca-wrap" style="display:none">
+            <div class="grid-2" style="gap:14px">
+              <div class="field" style="position:relative">
+                <label>Buscar usuário</label>
+                <input id="emp-usuario-busca" type="text"
+                       placeholder="Digite o nome do usuário..."
+                       oninput="onUsuarioBusca()" autocomplete="off" />
+                <div id="emp-usuario-dropdown" class="search-dropdown"></div>
+              </div>
+              <div class="field">
+                <label>ID selecionado</label>
+                <input id="emp-usuario-id-display" type="text" readonly
+                       style="opacity:0.6" placeholder="Preenchido ao selecionar" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Card do usuário selecionado / próprio usuário -->
+          <div id="emp-usuario-card" style="display:none; align-items:center; gap:12px;
+               background:var(--surface2); border-radius:8px; padding:10px 14px; margin-top:8px;">
+          </div>
+        </div>
+
+        <!-- Busca de livro -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-search"></i> Buscar livro</div>
+          <div class="book-search-box">
+            <i class="ti ti-search book-search-icon"></i>
+            <input id="emp-livro-busca" class="book-search-input" type="text"
+                   placeholder="Título, autor ou ISBN..." oninput="onLivroBusca()" autocomplete="off" />
+          </div>
+          <div id="emp-livro-resultados"></div>
+        </div>
+
+        <!-- Datas -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-calendar"></i> Datas e condições</div>
+          <div class="grid-3" style="gap:14px">
+            <div class="field">
+              <label>Data do empréstimo</label>
+              <input id="emp-data-emprestimo" type="date" readonly style="opacity:0.65" />
+            </div>
+            <div class="field">
+              <label>Devolução prevista *</label>
+              <input id="emp-data-devolucao" type="date" />
+            </div>
+            <div class="field">
+              <label>Prazo (dias)</label>
+              <select id="emp-prazo" onchange="calcularDataDevolucao()">
+                <option value="7">7 dias</option>
+                <option value="14" selected>14 dias</option>
+                <option value="21">21 dias</option>
+                <option value="30">30 dias</option>
+              </select>
+            </div>
+          </div>
+          <div class="alert-strip alert-warn">
+            <i class="ti ti-alert-triangle" style="font-size:16px;flex-shrink:0;margin-top:1px"></i>
+            <span>Multa por atraso: <strong>R$ 2,50 por dia</strong> após a data prevista de devolução.
+                  Usuários com empréstimos atrasados não podem realizar novos empréstimos.</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="resetarFormulario()">
+            <i class="ti ti-x"></i> Cancelar
+          </button>
+          <button id="btn-confirmar" class="btn btn-primary" onclick="confirmarEmprestimo()">
+            <i class="ti ti-arrow-forward-up"></i> Confirmar empréstimo
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/emprestimo.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Novo funcionário</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header">
+          <div class="page-title">Cadastrar funcionário</div>
+          <div class="page-desc">Criar conta de acesso para novo membro da equipe</div>
+        </div>
+
+        <!-- Dados do funcionário -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-id-badge"></i> Dados do funcionário</div>
+          <div class="grid-2" style="gap:14px">
+            <div class="field">
+              <label>Nome completo *</label>
+              <input id="func-nome" type="text" placeholder="Nome completo" />
+            </div>
+            <div class="field">
+              <label>E-mail institucional *</label>
+              <input id="func-email" type="email" placeholder="funcionario@biblioteca.gov.br" />
+            </div>
+            <div class="field">
+              <label>Telefone</label>
+              <input id="func-telefone" type="tel" placeholder="(19) 00000-0000" />
+            </div>
+            <div class="field">
+              <label>Senha inicial *</label>
+              <input id="func-senha" type="password" placeholder="Mínimo 6 caracteres" />
+              <span class="hint-text">O funcionário deverá alterar no primeiro acesso</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Perfil de acesso -->
+        <div class="card">
+          <div class="card-title"><i class="ti ti-shield-check"></i> Perfil de acesso</div>
+          <div class="grid-2" style="gap:14px; margin-bottom:0">
+            <div class="role-card selected" data-perfil="BIBLIOTECARIO" onclick="selecionarPerfil(this)">
+              <div class="role-icon" style="background:#E1F5EE;color:#085041">
+                <i class="ti ti-books"></i>
+              </div>
+              <div class="role-title">Bibliotecário(a)</div>
+              <div class="role-desc">Acesso total: cadastros, empréstimos e relatórios financeiros</div>
+            </div>
+            <div class="role-card" data-perfil="ASSISTENTE" onclick="selecionarPerfil(this)">
+              <div class="role-icon" style="background:#E6F1FB;color:#0C447C">
+                <i class="ti ti-user-check"></i>
+              </div>
+              <div class="role-title">Assistente</div>
+              <div class="role-desc">Empréstimos e devoluções; sem acesso a relatórios financeiros</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="limparForm()"><i class="ti ti-x"></i> Cancelar</button>
+          <button id="btn-cadastrar" class="btn btn-primary" onclick="cadastrarFuncionario()">
+            <i class="ti ti-user-plus"></i> Criar funcionário
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/funcionario.js"></script>
+</body>
+</html>

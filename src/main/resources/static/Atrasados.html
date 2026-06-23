@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Empréstimos atrasados</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+        <div class="page-header page-header-row">
+          <div>
+            <div class="page-title">Empréstimos atrasados</div>
+            <div class="page-desc">Usuários com data de devolução vencida</div>
+          </div>
+          <button class="btn" onclick="carregarAtrasados()">
+            <i class="ti ti-refresh"></i> Atualizar
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Livro</th>
+                  <th>Prazo de devolução</th>
+                  <th>Dias em atraso</th>
+                  <th>Multa estimada</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody id="atrasados-tbody">
+                <tr>
+                  <td colspan="6" class="table-empty">
+                    <i class="ti ti-loader spin"></i>
+                    Carregando...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/atrasados.js"></script>
+</body>
+</html>

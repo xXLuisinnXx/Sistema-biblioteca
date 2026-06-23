@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+  <div id="toast"></div>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-icon"><i class="ti ti-books"></i></div>
+        <div>
+          <div class="brand-name">Biblioteca</div>
+          <div class="brand-sub">Sistema de Gestão</div>
+        </div>
+      </div>
+
+      <h1 class="login-title">Entrar</h1>
+      <p class="login-desc">Acesse sua conta para continuar</p>
+
+      <div class="field" style="margin-bottom: 12px">
+        <label>E-mail</label>
+        <input id="login-email" type="email" placeholder="seu@email.com" autocomplete="username" />
+      </div>
+
+      <div class="field">
+        <label>Senha</label>
+        <input id="login-senha" type="password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+
+      <p id="login-error" class="login-error"></p>
+
+      <button id="btn-login" class="btn btn-primary" onclick="doLogin()"
+              style="width:100%; justify-content:center; margin-top:1.25rem">
+        <i class="ti ti-login"></i> Entrar
+      </button>
+
+      <div class="login-divider">ou</div>
+
+      <p class="auth-link">
+        Não tem uma conta? <a href="/register.html">Criar conta gratuitamente</a>
+      </p>
+      <p class="auth-link" style="margin-top:6px">
+        <a href="/landing.html" style="color:var(--hint);font-size:12px">← Voltar ao início</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

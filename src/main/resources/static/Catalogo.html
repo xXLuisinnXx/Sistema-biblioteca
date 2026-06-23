@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Catálogo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <!-- Modal de detalhe do livro -->
+  <div id="modal-livro" class="modal-overlay" onclick="fecharModal(event)">
+    <div class="modal-panel">
+      <button class="modal-close" onclick="fecharModal()" title="Fechar">
+        <i class="ti ti-x"></i>
+      </button>
+
+      <h2 class="modal-title" id="modal-titulo">—</h2>
+      <p  class="modal-tagline" id="modal-tagline"></p>
+
+      <div id="modal-disponibilidade" class="modal-availability"></div>
+
+      <div class="modal-grid" id="modal-grid"><!-- campos dinâmicos --></div>
+
+      <div id="modal-sinopse-wrap" style="display:none">
+        <div class="modal-sinopse-label">Sinopse</div>
+        <p class="modal-sinopse" id="modal-sinopse"></p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn" onclick="fecharModal()"><i class="ti ti-x"></i> Fechar</button>
+        <button id="btn-solicitar" class="btn btn-primary" onclick="solicitarEmprestimo()">
+          <i class="ti ti-arrow-forward-up"></i> Solicitar empréstimo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div class="app">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="main">
+      <div class="page">
+
+        <!-- Cabeçalho -->
+        <div class="catalogo-header">
+          <div>
+            <div class="page-title">Catálogo de livros</div>
+            <div class="catalogo-count" id="catalogo-count">Carregando...</div>
+          </div>
+          <div class="per-page-select">
+            <span>Por página:</span>
+            <select id="per-page" onchange="onPerPageChange()">
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="catalogo-controls">
+          <div class="field" style="flex:2;min-width:200px">
+            <label>Buscar por título ou autor</label>
+            <input id="filtro-busca" type="text" placeholder="Ex.: Clean Code, Robert Martin..."
+                   oninput="onBuscaChange()" />
+          </div>
+          <div class="field">
+            <label>Categoria</label>
+            <select id="filtro-categoria" onchange="onFiltroChange()">
+              <option value="">Todas</option>
+              <option>Engenharia de Software</option>
+              <option>Ciência da Computação</option>
+              <option>Banco de Dados</option>
+              <option>Redes</option>
+              <option>Literatura</option>
+              <option>Periódicos</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Editora</label>
+            <input id="filtro-editora" type="text" placeholder="Nome da editora..."
+                   oninput="onFiltroChange()" />
+          </div>
+          <button class="btn" onclick="limparFiltros()" style="align-self:flex-end">
+            <i class="ti ti-x"></i> Limpar
+          </button>
+        </div>
+
+        <!-- Paginação (topo) -->
+        <div id="paginacao-top" class="pagination"></div>
+
+        <!-- Lista de livros -->
+        <div id="livros-lista">
+          <div class="empty-state">
+            <i class="ti ti-loader spin"></i>
+            Carregando catálogo...
+          </div>
+        </div>
+
+        <!-- Paginação (rodapé) -->
+        <div id="paginacao-bot" class="pagination"></div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/catalogo.js"></script>
+</body>
+</html>
